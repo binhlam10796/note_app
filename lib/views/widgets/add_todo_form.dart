@@ -5,7 +5,7 @@ import 'package:notes_app/cubits/add_todo_cubit/add_todo_cubit.dart';
 import 'package:notes_app/models/todo_model.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
-import 'colors_list_view.dart';
+import 'todo_colors_list_view.dart';
 
 class AddTodoForm extends StatefulWidget {
   const AddTodoForm({Key? key}) : super(key: key);
@@ -32,12 +32,6 @@ class _AddTodoFormState extends State<AddTodoForm> {
             onSaved: (value) {
               title = value;
             },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Task title is required';
-              }
-              return null;
-            },
           ),
           const SizedBox(height: 16),
           CustomTextField(
@@ -50,11 +44,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
           const SizedBox(height: 32),
           BlocBuilder<AddTodoCubit, AddTodoState>(
             builder: (context, state) {
-              return ColorsListView(
-                onColorSelected: (color) {
-                  BlocProvider.of<AddTodoCubit>(context).color = color;
-                },
-              );
+              return const TodoColorsListView();
             },
           ),
           const SizedBox(height: 32),
@@ -77,7 +67,6 @@ class _AddTodoFormState extends State<AddTodoForm> {
                     setState(() {});
                   }
                 },
-                text: 'Add Task',
               );
             },
           ),
