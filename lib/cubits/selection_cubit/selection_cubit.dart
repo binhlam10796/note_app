@@ -79,4 +79,11 @@ class SelectionCubit extends Cubit<SelectionState> {
   bool isNoteSelected(NoteModel note) {
     return selectedNotes.contains(note);
   }
+
+  void clearSelectionIfInactive() {
+    if (isSelectionMode && selectedNotes.isEmpty) {
+      isSelectionMode = false;
+      emit(SelectionInitial());
+    }
+  }
 }
