@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/constants.dart';
 
 import 'colors_list_view.dart';
 import 'custom_button.dart';
@@ -22,7 +23,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-  String? title, subTitle;
+  String? title, subTitle, selectedCategory;
+  
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -50,6 +52,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 5,
           ),
           const SizedBox(
+            height: 16,
+          ),
+          _buildCategoryDropdown(),
+          const SizedBox(
             height: 32,
           ),
           const ColorsListView(),
@@ -71,7 +77,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         title: title!,
                         subTitle: subTitle!,
                         date: formattedCurrentDate,
-                        color: Colors.blue.value);
+                        color: Colors.blue.value,
+                        category: selectedCategory);
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
@@ -85,6 +92,34 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryDropdown() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: DropdownButton<String>(
+        value: selectedCategory,
+        hint: const Text('Select Category (Optional)'),
+        isExpanded: true,
+        underline: Container(),
+        items: kCategories.map((String category) {
+          return DropdownMenuItem<String>(
+            value: category,
+            child: Text(category),
+          );
+        }).toList(),
+        onChanged: (String? newValue) {
+          setState(() {
+            selectedCategory = newValue;
+          });
+        },
       ),
     );
   }

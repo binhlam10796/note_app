@@ -56,4 +56,44 @@ void main() {
     await box.clear();
     await box.close();
   });
+
+  testWidgets('Empty state shows helpful message', (WidgetTester tester) async {
+    // Open the test box
+    await Hive.openBox<NoteModel>(kNotesBox);
+
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const NotesApp());
+    await tester.pumpAndSettle();
+
+    // Verify that empty state message is shown
+    expect(find.text('No notes yet.\nTap + to add your first note!'), findsOneWidget);
+
+    // Clean up the test box
+    final box = Hive.box<NoteModel>(kNotesBox);
+    await box.clear();
+    await box.close();
+  });
+
+  testWidgets('Search functionality works', (WidgetTester tester) async {
+    // Open the test box
+    await Hive.openBox<NoteModel>(kNotesBox);
+
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const NotesApp());
+    await tester.pumpAndSettle();
+
+    // Find and tap the search icon
+    final searchIcon = find.byIcon(Icons.search);
+    expect(searchIcon, findsOneWidget);
+    await tester.tap(searchIcon);
+    await tester.pumpAndSettle();
+
+    // Verify search screen shows initial message
+    expect(find.text('Start typing to search your notes...'), findsOneWidget);
+
+    // Clean up the test box
+    final box = Hive.box<NoteModel>(kNotesBox);
+    await box.clear();
+    await box.close();
+  });
 }
