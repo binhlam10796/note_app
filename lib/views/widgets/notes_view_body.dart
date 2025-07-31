@@ -48,9 +48,7 @@ class _NotesViewBodyState extends State<NotesViewBody> {
           children: [
             const SizedBox(height: 16),
             BlocBuilder<SelectionCubit, SelectionState>(
-              builder: (context, selectionState) {
-                final selectionCubit = BlocProvider.of<SelectionCubit>(context);
-                
+              builder: (context, selectionState) {                
                 if (selectionState is SelectionActive) {
                   return _buildSelectionAppBar(selectionState.selectedNotes.length);
                 } else {

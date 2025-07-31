@@ -12,6 +12,15 @@ class SelectionCubit extends Cubit<SelectionState> {
   Set<NoteModel> selectedNotes = {};
   bool isSelectionMode = false;
 
+  void enterSelectionMode(NoteModel firstNote) {
+    if (!isSelectionMode) {
+      isSelectionMode = true;
+      selectedNotes.clear();
+      selectedNotes.add(firstNote);
+      emit(SelectionActive(selectedNotes.toList()));
+    }
+  }
+
   void toggleSelectionMode() {
     isSelectionMode = !isSelectionMode;
     if (!isSelectionMode) {
@@ -38,7 +47,9 @@ class SelectionCubit extends Cubit<SelectionState> {
   }
 
   void selectAll(List<NoteModel> allNotes) {
+    selectedNotes.clear();
     selectedNotes.addAll(allNotes);
+    isSelectionMode = true;
     emit(SelectionActive(selectedNotes.toList()));
   }
 

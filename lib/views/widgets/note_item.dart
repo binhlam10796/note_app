@@ -37,8 +37,7 @@ class NoteItem extends StatelessWidget {
           },
           onLongPress: () {
             if (!isSelectionMode) {
-              selectionCubit.toggleSelectionMode();
-              selectionCubit.toggleNoteSelection(note);
+              selectionCubit.enterSelectionMode(note);
             }
           },
           child: Slidable(
