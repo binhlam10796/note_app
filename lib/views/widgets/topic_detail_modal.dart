@@ -181,6 +181,7 @@ class TopicDetailModal extends StatelessWidget {
 
   void _showChapterProgressDialog(BuildContext context, chapter) {
     int currentProgress = chapter.progress;
+    final learningCubit = BlocProvider.of<LearningCubit>(context);
     
     showDialog(
       context: context,
@@ -216,7 +217,7 @@ class TopicDetailModal extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              BlocProvider.of<LearningCubit>(context).updateChapterProgress(
+              learningCubit.updateChapterProgress(
                 topic.id,
                 chapter.name,
                 currentProgress,
