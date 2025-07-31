@@ -20,7 +20,7 @@ void main() {
 
     testWidgets('should show loading indicator initially', (tester) async {
       // Arrange
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenAnswer((_) async => []);
 
       // Act
@@ -58,7 +58,7 @@ void main() {
         ),
       ];
 
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenAnswer((_) async => mockUsers);
 
       // Act
@@ -81,7 +81,7 @@ void main() {
 
     testWidgets('should show error state when loading fails', (tester) async {
       // Arrange
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenThrow(const ApiException('Network error'));
 
       // Act
@@ -104,7 +104,7 @@ void main() {
 
     testWidgets('should show empty state when no users found', (tester) async {
       // Arrange
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenAnswer((_) async => []);
 
       // Act
@@ -126,7 +126,7 @@ void main() {
 
     testWidgets('should show search bar', (tester) async {
       // Arrange
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenAnswer((_) async => []);
 
       // Act
@@ -146,7 +146,7 @@ void main() {
 
     testWidgets('should show sort button', (tester) async {
       // Arrange
-      when(mockApiService.getUsers(page: anyNamed('page'), perPage: anyNamed('perPage')))
+      when(mockApiService.getUsers(page: any(named: 'page'), perPage: any(named: 'perPage')))
           .thenAnswer((_) async => []);
 
       // Act
