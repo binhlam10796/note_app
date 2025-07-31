@@ -14,6 +14,8 @@ class NoteModel extends HiveObject {
   int color;
   @HiveField(4)
   String? category;
+  @HiveField(5)
+  bool isCompleted;
 
   NoteModel({
     required this.title,
@@ -21,5 +23,6 @@ class NoteModel extends HiveObject {
     required this.date,
     required this.color,
     this.category,
+    this.isCompleted = false,
   });
 }

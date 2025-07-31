@@ -21,4 +21,14 @@ class NotesCubit extends Cubit<NotesState> {
       emit(NotesFailure('Failed to load notes: ${e.toString()}'));
     }
   }
+
+  void toggleNoteCompletion(NoteModel note) async {
+    try {
+      note.isCompleted = !note.isCompleted;
+      await note.save();
+      fetchAllNotes();
+    } catch (e) {
+      emit(NotesFailure('Failed to update note: ${e.toString()}'));
+    }
+  }
 }

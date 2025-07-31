@@ -6,6 +6,7 @@ import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
 import 'custom_app_bar.dart';
 import 'notes_list_view.dart';
 import 'category_selector.dart';
+import 'task_filter_selector.dart';
 
 class NotesViewBody extends StatefulWidget {
   const NotesViewBody({Key? key}) : super(key: key);
@@ -76,7 +77,13 @@ class _NotesViewBodyState extends State<NotesViewBody> {
                 if (selectionState is SelectionActive) {
                   return const SizedBox.shrink();
                 }
-                return const CategorySelector();
+                return Column(
+                  children: const [
+                    CategorySelector(),
+                    SizedBox(height: 8),
+                    TaskFilterSelector(),
+                  ],
+                );
               },
             ),
             const Expanded(

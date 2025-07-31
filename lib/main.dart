@@ -10,6 +10,7 @@ import 'package:notes_app/views/main_view.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
 import 'package:notes_app/cubits/category_cubit/category_cubit.dart';
+import 'package:notes_app/cubits/task_filter_cubit/task_filter_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -38,6 +39,7 @@ class NotesApp extends StatelessWidget {
         BlocProvider(create: (context) => NotesCubit()),
         BlocProvider(create: (context) => SelectionCubit()),
         BlocProvider(create: (context) => CategoryCubit()),
+        BlocProvider(create: (context) => TaskFilterCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

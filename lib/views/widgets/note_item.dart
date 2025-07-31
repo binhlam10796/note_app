@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -83,7 +84,7 @@ class NoteItem extends StatelessWidget {
             ),
             child: Container(
               decoration: BoxDecoration(
-                color: Color(note.color),
+                color: Color(note.color).withOpacity(note.isCompleted ? 0.6 : 1.0),
                 borderRadius: BorderRadius.circular(16),
                 border: isSelected 
                     ? Border.all(color: Theme.of(context).primaryColor, width: 3)
@@ -104,12 +105,26 @@ class NoteItem extends StatelessWidget {
                                 : Colors.black.withOpacity(.6),
                             size: 28,
                           )
-                        : null,
+                        : GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<NotesCubit>(context).toggleNoteCompletion(note);
+                            },
+                            child: Icon(
+                              note.isCompleted ? Icons.check_circle : Icons.radio_button_unchecked,
+                              color: note.isCompleted 
+                                  ? Colors.green 
+                                  : Colors.black.withOpacity(.6),
+                              size: 28,
+                            ),
+                          ),
                     title: Text(
                       note.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 26,
                         color: Colors.black,
+                        decoration: note.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                        decorationColor: Colors.black,
+                        decorationThickness: 2.0,
                       ),
                     ),
                     subtitle: Column(
@@ -140,6 +155,9 @@ class NoteItem extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.black.withOpacity(.4),
+                              decoration: note.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                              decorationColor: Colors.black.withOpacity(.4),
+                              decorationThickness: 2.0,
                             ),
                           ),
                         ),
