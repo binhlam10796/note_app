@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'notes_view.dart';
 import 'users_view.dart';
 import 'learning_view.dart';
+import 'todos_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> _views = [
     const NotesView(),
+    const TodosView(),
     const LearningView(),
     const UsersView(),
   ];
@@ -38,6 +40,10 @@ class _MainViewState extends State<MainView> {
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
             label: 'Notes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task_alt),
+            label: 'To-Do',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
