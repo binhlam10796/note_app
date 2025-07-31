@@ -5,11 +5,13 @@ import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/models/learning_topic_model.dart';
 import 'package:notes_app/models/chapter_model.dart';
+import 'package:notes_app/models/todo_model.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
 import 'package:notes_app/views/main_view.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
 import 'package:notes_app/cubits/category_cubit/category_cubit.dart';
+import 'package:notes_app/cubits/todos_cubit/todos_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -20,10 +22,12 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
   Hive.registerAdapter(ChapterModelAdapter());
   Hive.registerAdapter(LearningTopicModelAdapter());
+  Hive.registerAdapter(TodoModelAdapter());
   
   // Open boxes
   await Hive.openBox<NoteModel>(kNotesBox);
   await Hive.openBox<LearningTopicModel>(kLearningTopicsBox);
+  await Hive.openBox<TodoModel>(kTodosBox);
 
   runApp(const NotesApp());
 }
@@ -38,6 +42,7 @@ class NotesApp extends StatelessWidget {
         BlocProvider(create: (context) => NotesCubit()),
         BlocProvider(create: (context) => SelectionCubit()),
         BlocProvider(create: (context) => CategoryCubit()),
+        BlocProvider(create: (context) => TodosCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
