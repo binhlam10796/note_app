@@ -4,10 +4,10 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
-
 import 'package:notes_app/views/notes_view.dart';
-
-import 'cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
+import 'package:notes_app/cubits/category_cubit/category_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -24,8 +24,12 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NotesCubit()),
+        BlocProvider(create: (context) => SelectionCubit()),
+        BlocProvider(create: (context) => CategoryCubit()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
