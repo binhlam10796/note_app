@@ -31,7 +31,14 @@ class _TodosViewBodyState extends State<TodosViewBody> {
                 style: TextStyle(
                   fontSize: 28,
                   color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
+              Spacer(),
+              Icon(
+                Icons.check_box,
+                color: Colors.white,
+                size: 32,
               ),
             ],
           ),

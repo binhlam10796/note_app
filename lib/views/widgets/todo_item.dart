@@ -64,6 +64,7 @@ class TodoItem extends StatelessWidget {
                     BlocProvider.of<TodosCubit>(context).fetchAllTodos();
                   },
                   activeColor: Colors.green,
+                  checkColor: Colors.white,
                 ),
                 Expanded(
                   child: Text(
@@ -75,9 +76,16 @@ class TodoItem extends StatelessWidget {
                       decoration: todo.isCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
+                      decorationColor: Colors.black.withOpacity(0.6),
                     ),
                   ),
                 ),
+                if (todo.isCompleted)
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 20,
+                  ),
               ],
             ),
             if (todo.description.isNotEmpty) ...[
