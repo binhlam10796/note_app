@@ -27,6 +27,7 @@ class _MainViewState extends State<MainView> {
         children: _views,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
