@@ -31,7 +31,8 @@ class LearningTopicModel extends HiveObject {
   // Calculate overall progress based on chapters
   double get overallProgress {
     if (chapters.isEmpty) return 0.0;
-    final totalProgress = chapters.map((c) => c.progress).reduce((a, b) => a + b);
+    final totalProgress =
+        chapters.map((c) => c.progress).reduce((a, b) => a + b);
     return totalProgress / chapters.length;
   }
 
