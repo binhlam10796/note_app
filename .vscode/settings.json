@@ -1,0 +1,192 @@
+{
+  // Java configuration (keep existing)
+  "java.configuration.updateBuildConfiguration": "interactive",
+  // Flutter and Dart settings
+  "dart.flutterSdkPath": null,
+  "dart.flutterSdkPaths": [],
+  "dart.openDevTools": "flutter",
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.evaluateGettersInDebugViews": true,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "dart.flutterCreateAndroidLanguage": "kotlin",
+  "dart.flutterCreateIOSLanguage": "swift",
+  "dart.flutterCreateOrganization": "com.example",
+  "dart.hotReloadOnSave": "all",
+  "dart.lineLength": 120,
+  "dart.insertArgumentPlaceholders": false,
+  "dart.enableSnippets": true,
+  "dart.showDependencyTree": true,
+  "dart.showTestCodeLens": true,
+  "dart.promptToGetPackages": true,
+  "dart.allowAnalytics": false,
+  "dart.analysisServerFolding": true,
+  "dart.enableCompletionCommitCharacters": false,
+  "dart.flutterGutterIcons": true,
+  "dart.closingLabels": true,
+  "dart.showMainCodeLens": false,
+  "dart.autoImportCompletions": true,
+  "dart.includeDependenciesInWorkspaceSymbols": true,
+  "dart.renameFilesWithClasses": "prompt",
+  "dart.warnWhenEditingFilesOutsideWorkspace": true,
+  "dart.warnWhenEditingFilesInPubCache": true,
+  // Editor settings for Flutter development
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 120,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  // File associations
+  "files.associations": {
+    "*.dart": "dart",
+    "*.yaml": "yaml",
+    "*.json": "jsonc"
+  },
+  // File exclusions for better performance
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.dart_tool": true,
+    "**/build": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/.packages": true,
+    "**/.pub-cache": true,
+    "**/.pub": true,
+    "**/ios/Pods": true,
+    "**/ios/.symlinks": true,
+    "**/android/.gradle": true,
+    "**/android/captures": true,
+    "**/android/gradlew": true,
+    "**/android/gradlew.bat": true,
+    "**/android/local.properties": true,
+    "**/android/**/GeneratedPluginRegistrant.java": true,
+    "**/android/key.properties": true,
+    "**/.vscode/launch.json": false
+  },
+  // Search exclusions
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.dart_tool": true,
+    "**/build": true,
+    "**/ios/Pods": true,
+    "**/android/.gradle": true,
+    "**/android/captures": true,
+    "**/.pub-cache": true,
+    "**/.pub": true
+  },
+  // File watching exclusions for performance
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.dart_tool/**": true,
+    "**/build/**": true,
+    "**/ios/Pods/**": true,
+    "**/android/.gradle/**": true,
+    "**/.pub-cache/**": true
+  },
+  // JSON formatting
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // YAML formatting
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  },
+  // Dart formatting
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  // Terminal settings
+  "terminal.integrated.env.osx": {
+    "PATH": "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  },
+  // GitLens settings for Flutter projects
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  // Better Comments extension settings
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  // Error Lens settings
+  "errorLens.enabledDiagnosticLevels": [
+    "warning",
+    "error"
+  ],
+  "errorLens.excludeBySource": [
+    "cSpell"
+  ]
+}

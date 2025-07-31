@@ -1,0 +1,88 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Flutter App",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Profile Flutter App",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/main.dart",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Release Flutter App",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main.dart",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug Android",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "android",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug iOS",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "ios",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug iOS Simulator",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "ios-simulator",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug Web",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "web-server",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug Tests",
+      "request": "launch",
+      "type": "dart",
+      "program": "test/",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Debug Widget Test",
+      "request": "launch",
+      "type": "dart",
+      "program": "test/widget_test.dart",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Attach to Process",
+      "request": "attach",
+      "type": "dart"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug All Platforms",
+      "configurations": [
+        "Debug Android",
+        "Debug iOS Simulator"
+      ]
+    }
+  ]
+}
