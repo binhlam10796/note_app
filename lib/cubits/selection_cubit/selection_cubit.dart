@@ -62,7 +62,6 @@ class SelectionCubit extends Cubit<SelectionState> {
   void deleteSelectedNotes() async {
     try {
       emit(SelectionDeleting());
-      var notesBox = Hive.box<NoteModel>(kNotesBox);
       
       for (var note in selectedNotes) {
         await note.delete();
