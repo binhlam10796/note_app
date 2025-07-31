@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/category_cubit/category_cubit.dart';
+import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
 import 'package:notes_app/constants.dart';
 
 class CategorySelector extends StatelessWidget {
@@ -30,6 +31,9 @@ class CategorySelector extends StatelessWidget {
                   label: Text(category),
                   selected: isSelected,
                   onSelected: (selected) {
+                    // Clear any active selection when changing categories
+                    BlocProvider.of<SelectionCubit>(context).clearSelection();
+                    
                     if (category == 'All') {
                       categoryCubit.clearCategory();
                     } else {

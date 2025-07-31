@@ -12,6 +12,15 @@ class SelectionCubit extends Cubit<SelectionState> {
   Set<NoteModel> selectedNotes = {};
   bool isSelectionMode = false;
 
+  void enterSelectionMode(NoteModel firstNote) {
+    if (!isSelectionMode) {
+      isSelectionMode = true;
+      selectedNotes.clear();
+      selectedNotes.add(firstNote);
+      emit(SelectionActive(selectedNotes.toList()));
+    }
+  }
+
   void toggleSelectionMode() {
     isSelectionMode = !isSelectionMode;
     if (!isSelectionMode) {
@@ -38,7 +47,9 @@ class SelectionCubit extends Cubit<SelectionState> {
   }
 
   void selectAll(List<NoteModel> allNotes) {
+    selectedNotes.clear();
     selectedNotes.addAll(allNotes);
+    isSelectionMode = true;
     emit(SelectionActive(selectedNotes.toList()));
   }
 
@@ -51,7 +62,6 @@ class SelectionCubit extends Cubit<SelectionState> {
   void deleteSelectedNotes() async {
     try {
       emit(SelectionDeleting());
-      var notesBox = Hive.box<NoteModel>(kNotesBox);
       
       for (var note in selectedNotes) {
         await note.delete();
@@ -67,5 +77,12 @@ class SelectionCubit extends Cubit<SelectionState> {
 
   bool isNoteSelected(NoteModel note) {
     return selectedNotes.contains(note);
+  }
+
+  void clearSelectionIfInactive() {
+    if (isSelectionMode && selectedNotes.isEmpty) {
+      isSelectionMode = false;
+      emit(SelectionInitial());
+    }
   }
 }

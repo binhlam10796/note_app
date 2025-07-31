@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/views/search_view.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
+import 'package:notes_app/cubits/category_cubit/category_cubit.dart';
 import 'custom_app_bar.dart';
 import 'notes_list_view.dart';
 import 'category_selector.dart';
@@ -48,9 +49,7 @@ class _NotesViewBodyState extends State<NotesViewBody> {
           children: [
             const SizedBox(height: 16),
             BlocBuilder<SelectionCubit, SelectionState>(
-              builder: (context, selectionState) {
-                final selectionCubit = BlocProvider.of<SelectionCubit>(context);
-                
+              builder: (context, selectionState) {                
                 if (selectionState is SelectionActive) {
                   return _buildSelectionAppBar(selectionState.selectedNotes.length);
                 } else {
@@ -116,8 +115,10 @@ class _NotesViewBodyState extends State<NotesViewBody> {
           IconButton(
             onPressed: () {
               final notesCubit = BlocProvider.of<NotesCubit>(context);
+              final categoryCubit = BlocProvider.of<CategoryCubit>(context);
               if (notesCubit.notes != null) {
-                BlocProvider.of<SelectionCubit>(context).selectAll(notesCubit.notes!);
+                final filteredNotes = categoryCubit.filterNotesByCategory(notesCubit.notes!);
+                BlocProvider.of<SelectionCubit>(context).selectAll(filteredNotes);
               }
             },
             icon: const Icon(Icons.select_all),
