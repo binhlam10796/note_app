@@ -1,9 +1,13 @@
 # NotesHub
 
-**Notes app made using Flutter with Hive**
+# NotesHub - Simple To-Do App
+
+**Enhanced Notes app with To-Do functionality made using Flutter with Hive**
 
 ## Features 
 - ✍️ **Craft & Revise Notes Easily**: Create and adjust your thoughts with simplicity.
+- ✅ **Task Completion Tracking**: Mark tasks as completed with visual feedback and status persistence.
+- 🎯 **Smart Task Filtering**: Filter tasks by completion status (All, Pending, Completed).
 - 🔍 **Rapid Search**: Quickly locate your notes using the robust search function with content and title search.
 - 📂 **Category Organization**: Organize notes by categories (Personal, Work, Shopping, Ideas, Travel, Health, Education, Finance, Other).
 - 🎯 **Multi-Note Selection**: Select multiple notes for batch operations like deletion.
@@ -177,6 +181,25 @@ dart run build_runner build --delete-conflicting-outputs
 ```
 
 ## New Features Added
+
+### Simple To-Do App Enhancement
+
+#### Task Completion System
+- **Checkbox for each task**: Tap the circle icon to mark tasks as completed or pending
+- **Visual feedback**: Completed tasks show green checkmarks and strikethrough styling
+- **Persistent state**: Task completion status is automatically saved and restored
+
+#### Smart Task Filtering
+- **All tasks**: View all notes regardless of completion status (default)
+- **Pending tasks**: See only uncompleted tasks to focus on what needs to be done
+- **Completed tasks**: Review finished tasks for satisfaction and reference
+- **Combined filtering**: Works seamlessly with existing category filters
+
+#### Enhanced User Experience
+- **Intuitive design**: Clear visual distinction between completed and pending tasks
+- **One-tap completion**: Quick and easy task completion with immediate visual feedback
+- **Context-aware messages**: Helpful empty state messages for each filter type
+- **Reduced opacity**: Completed tasks appear with reduced opacity to de-emphasize them
 
 ### Multi-Note Selection
 - **Long press** any note to enter selection mode
