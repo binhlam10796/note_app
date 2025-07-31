@@ -80,9 +80,14 @@ class UsersCubit extends Cubit<UsersState> {
     final currentState = state;
     if (currentState is! UsersLoaded) return;
 
+    // Get all users without search filter applied
+    List<UserModel> allUsers = currentState.users;
+    
+    // If we have a search query, we need to fetch fresh data
+    // For now, we'll filter the current loaded users
     final filteredUsers = query.isEmpty
-        ? currentState.users
-        : currentState.users
+        ? allUsers
+        : allUsers
             .where((user) =>
                 user.login.toLowerCase().contains(query.toLowerCase()) ||
                 (user.name?.toLowerCase().contains(query.toLowerCase()) ?? false))

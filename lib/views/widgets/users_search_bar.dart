@@ -13,6 +13,14 @@ class _UsersSearchBarState extends State<UsersSearchBar> {
   final TextEditingController _controller = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {}); // Rebuild to show/hide clear button
+    });
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
