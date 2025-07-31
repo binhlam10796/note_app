@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'notes_view.dart';
 import 'users_view.dart';
+import 'learning_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> _views = [
     const NotesView(),
+    const LearningView(),
     const UsersView(),
   ];
 
@@ -25,6 +27,7 @@ class _MainViewState extends State<MainView> {
         children: _views,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -35,6 +38,10 @@ class _MainViewState extends State<MainView> {
           BottomNavigationBarItem(
             icon: Icon(Icons.note),
             label: 'Notes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Learning',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
