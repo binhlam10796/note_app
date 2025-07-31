@@ -122,6 +122,7 @@ class LearningTopicItem extends StatelessWidget {
   }
 
   void _showTopicDetail(BuildContext context) {
+    final learningCubit = BlocProvider.of<LearningCubit>(context);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -129,7 +130,7 @@ class LearningTopicItem extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
       ),
       builder: (context) => BlocProvider.value(
-        value: BlocProvider.of<LearningCubit>(context),
+        value: learningCubit,
         child: TopicDetailModal(topic: topic),
       ),
     );
