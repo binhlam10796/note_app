@@ -5,6 +5,7 @@ import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/cubits/selection_cubit/selection_cubit.dart';
 import 'custom_app_bar.dart';
 import 'notes_list_view.dart';
+import 'category_selector.dart';
 
 class NotesViewBody extends StatefulWidget {
   const NotesViewBody({Key? key}) : super(key: key);
@@ -66,6 +67,16 @@ class _NotesViewBodyState extends State<NotesViewBody> {
                     icon: Icons.search,
                   );
                 }
+              },
+            ),
+            const SizedBox(height: 16),
+            BlocBuilder<SelectionCubit, SelectionState>(
+              builder: (context, selectionState) {
+                // Hide category selector when in selection mode
+                if (selectionState is SelectionActive) {
+                  return const SizedBox.shrink();
+                }
+                return const CategorySelector();
               },
             ),
             const Expanded(

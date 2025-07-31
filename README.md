@@ -3,11 +3,15 @@
 **Notes app made using Flutter with Hive**
 
 ## Features 
-- ✍️ Craft & Revise Notes Easily: Create and adjust your thoughts with simplicity.
-- 🔍 Rapid Search: Quickly locate your notes using the robust search function.
-- ⌚️ Timestamps: Every note is marked with its creation date and time.
-- 🎨 Customizable Colors: Personalize your notes with different color themes.
-- 📱 Cross-platform: Works on Android and iOS devices.
+- ✍️ **Craft & Revise Notes Easily**: Create and adjust your thoughts with simplicity.
+- 🔍 **Rapid Search**: Quickly locate your notes using the robust search function with content and title search.
+- 📂 **Category Organization**: Organize notes by categories (Personal, Work, Shopping, Ideas, Travel, Health, Education, Finance, Other).
+- 🎯 **Multi-Note Selection**: Select multiple notes for batch operations like deletion.
+- ⌚️ **Timestamps**: Every note is marked with its creation date and time.
+- 🎨 **Customizable Colors**: Personalize your notes with different color themes.
+- 💾 **Reliable Storage**: All data stored locally using Hive database.
+- 🔄 **State Management**: Built with BLoC pattern for predictable state management.
+- 📱 **Cross-platform**: Works on Android and iOS devices.
 
 ## Screenshots
 ![NotesView](https://github.com/m-1226/NotesHub/assets/64734981/4fc54256-63db-4cf7-8190-026f9b91923f) ![EditNoteView](https://github.com/m-1226/NotesHub/assets/64734981/6537c6f6-e499-4118-9a8a-e372c40cee34) ![SearchNoteView](https://github.com/m-1226/NotesHub/assets/64734981/8cba4571-1a35-42d3-91d6-9275aaf84fa7) ![slide_delete](https://github.com/m-1226/NotesHub/assets/64734981/9258914b-b777-4ab9-a9ff-3f0b59dd6367)  ![slide_edit](https://github.com/m-1226/NotesHub/assets/64734981/bc9453f4-9469-46aa-8175-9f0a0260b792)
@@ -119,19 +123,26 @@ flutter build ios --release
 ```
 lib/
 ├── main.dart                 # App entry point
-├── constants.dart           # App constants
+├── constants.dart           # App constants and categories
 ├── simple_bloc_observer.dart # BLoC observer
 ├── cubits/                  # State management
-│   ├── add_note_cubit/
-│   └── notes_cubit/
+│   ├── add_note_cubit/      # Adding new notes
+│   ├── notes_cubit/         # Notes data management
+│   ├── search_cubit/        # Search functionality
+│   ├── selection_cubit/     # Multi-note selection
+│   └── category_cubit/      # Category filtering
 ├── models/                  # Data models
-│   ├── note_model.dart
+│   ├── note_model.dart      # Note data model with category
 │   └── note_model.g.dart   # Generated Hive adapter
 └── views/                   # UI screens and widgets
-    ├── notes_view.dart
-    ├── edit_note_view.dart
-    ├── search_view.dart
+    ├── notes_view.dart      # Main notes screen
+    ├── edit_note_view.dart  # Edit note screen
+    ├── search_view.dart     # Search screen
     └── widgets/            # Reusable widgets
+        ├── category_selector.dart  # Category filter chips
+        ├── notes_list_view.dart   # Notes display with selection
+        ├── note_item.dart         # Individual note widget
+        └── [other widgets...]
 ```
 
 ### Testing
@@ -158,9 +169,38 @@ dart run build_runner build
 # Watch for changes and regenerate
 dart run build_runner watch
 
-# Delete generated files and regenerate
+# Delete generated files and regenerate (use after model changes)
 dart run build_runner build --delete-conflicting-outputs
+
+# Or use the provided script
+./regenerate_adapters.sh
 ```
+
+## New Features Added
+
+### Multi-Note Selection
+- **Long press** any note to enter selection mode
+- **Tap notes** to select/deselect while in selection mode  
+- **Select All** button to select all visible notes
+- **Batch delete** multiple notes at once
+- **Visual feedback** with selection indicators and borders
+
+### Category Organization
+- **9 predefined categories**: Personal, Work, Shopping, Ideas, Travel, Health, Education, Finance, Other
+- **Category filtering** with filter chips at the top of the notes list
+- **Category selection** when creating or editing notes
+- **Smart filtering**: Notes without categories appear under "Other" when that filter is selected
+
+### Enhanced Search
+- **Improved search** that looks in both title and content
+- **Better UX** with proper loading states and empty state messages
+- **BLoC pattern** integration for consistent state management
+
+### Better Error Handling
+- **Null-safe code** prevents crashes
+- **Error states** with user-friendly messages
+- **Loading indicators** for better UX
+- **Success notifications** for user actions
 
 ### Development Guidelines
 

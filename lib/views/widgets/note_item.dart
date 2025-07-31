@@ -112,15 +112,38 @@ class NoteItem extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        note.subTitle,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black.withOpacity(.4),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (note.category != null) ...[
+                          Container(
+                            margin: const EdgeInsets.only(top: 8, bottom: 4),
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              note.category!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(.7),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            note.subTitle,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black.withOpacity(.4),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     trailing: !isSelectionMode
                         ? CustomIcon(
