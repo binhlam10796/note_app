@@ -12,7 +12,38 @@ class NotesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
-        List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes!;
+        if (state is NotesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is NotesFailure) {
+          return Center(
+            child: Text(
+              state.errMessage,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.red,
+              ),
+            ),
+          );
+        }
+        
+        List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes ?? [];
+        
+        if (notes.isEmpty) {
+          return const Center(
+            child: Text(
+              'No notes yet.\nTap + to add your first note!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey,
+              ),
+            ),
+          );
+        }
+        
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: ListView.builder(

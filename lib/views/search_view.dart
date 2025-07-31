@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:notes_app/views/widgets/note_item.dart';
-import '../constants.dart';
-import '../models/note_model.dart';
+import 'package:notes_app/constants.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class SearchNoteView extends StatefulWidget {
   const SearchNoteView({Key? key}) : super(key: key);
