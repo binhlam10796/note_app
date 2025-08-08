@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "Framelink Figma MCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--stdio"
+      ],
+      "env": {
+        "FIGMA_API_KEY": "figd_jiJrCG4CbOUuCptd8a-5CCGJWAoT221rxxxLg_tn"
+      }
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
