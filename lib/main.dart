@@ -1,36 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:notes_app/constants.dart';
-import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/simple_bloc_observer.dart';
+import 'screens/pokedex_grid_screen.dart';
+import 'theme/app_colors.dart';
 
-import 'package:notes_app/views/notes_view.dart';
-
-import 'cubits/notes_cubit/notes_cubit.dart';
-
-void main() async {
-  await Hive.initFlutter();
-
-  Bloc.observer = SimpleBlocObserver();
-  Hive.registerAdapter(NoteModelAdapter());
-  await Hive.openBox<NoteModel>(kNotesBox);
-
-  runApp(const NotesApp());
+void main() {
+  runApp(const PokedexApp());
 }
 
-class NotesApp extends StatelessWidget {
-  const NotesApp({Key? key}) : super(key: key);
+class PokedexApp extends StatelessWidget {
+  const PokedexApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
-        home: const NotesView(),
+    return MaterialApp(
+      title: 'Pokédex',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: _createMaterialColor(AppColors.primary),
+        primaryColor: AppColors.primary,
+        scaffoldBackgroundColor: AppColors.background,
+        fontFamily: 'Poppins',
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.surface,
+          foregroundColor: AppColors.onSurface,
+          elevation: 0,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primary,
+          background: AppColors.background,
+          surface: AppColors.surface,
+          onBackground: AppColors.onBackground,
+          onSurface: AppColors.onSurface,
+        ),
+        useMaterial3: true,
       ),
+      home: const PokedexGridScreen(),
     );
+  }
+
+  // Helper method to create MaterialColor from Color
+  MaterialColor _createMaterialColor(Color color) {
+    List strengths = <double>[.05];
+    final swatch = <int, Color>{};
+    final int r = color.red, g = color.green, b = color.blue;
+
+    for (int i = 1; i < 10; i++) {
+      strengths.add(0.1 * i);
+    }
+    
+    for (final strength in strengths) {
+      final double ds = 0.5 - strength;
+      swatch[(strength * 1000).round()] = Color.fromRGBO(
+        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+        1,
+      );
+    }
+    return MaterialColor(color.value, swatch);
   }
 }
